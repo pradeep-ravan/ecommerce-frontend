@@ -43,6 +43,7 @@ const ProductsPage = () => {
     dispatch(setPage(newPage));
   };
   
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
       {/* Sidebar Filters */}
