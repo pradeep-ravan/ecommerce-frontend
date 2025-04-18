@@ -8,41 +8,33 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     const maxPagesToShow = 5;
     
     if (totalPages <= maxPagesToShow) {
-      // Show all pages if there are fewer than maxPagesToShow
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
-      // Always show first page
       pages.push(1);
       
-      // Calculate start and end of page range around current page
       let start = Math.max(2, currentPage - 1);
       let end = Math.min(totalPages - 1, currentPage + 1);
       
-      // Adjust if at the edges
       if (currentPage <= 2) {
         end = 4;
       } else if (currentPage >= totalPages - 1) {
         start = totalPages - 3;
       }
       
-      // Add ellipsis before middle pages if needed
       if (start > 2) {
         pages.push('...');
       }
       
-      // Add middle pages
       for (let i = start; i <= end; i++) {
         pages.push(i);
       }
       
-      // Add ellipsis after middle pages if needed
       if (end < totalPages - 1) {
         pages.push('...');
       }
       
-      // Always show last page
       pages.push(totalPages);
     }
     
@@ -52,7 +44,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <nav className="flex justify-center">
       <ul className="flex items-center space-x-1">
-        {/* Previous button */}
         <li>
           <button
             onClick={() => onPageChange(currentPage - 1)}
@@ -67,7 +58,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           </button>
         </li>
         
-        {/* Page numbers */}
         {getPageNumbers().map((page, index) => (
           <li key={index}>
             {page === '...' ? (
@@ -87,7 +77,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           </li>
         ))}
         
-        {/* Next button */}
         <li>
           <button
             onClick={() => onPageChange(currentPage + 1)}

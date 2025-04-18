@@ -4,7 +4,6 @@ const PriceRangeFilter = ({ minPrice, maxPrice, onChange }) => {
   const [localMin, setLocalMin] = useState(minPrice);
   const [localMax, setLocalMax] = useState(maxPrice);
   
-  // Update local state when props change
   useEffect(() => {
     setLocalMin(minPrice);
     setLocalMax(maxPrice);

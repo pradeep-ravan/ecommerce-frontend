@@ -3,12 +3,10 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_APP_API_URL;
 
-// Async thunks
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async ({ page = 1, limit = 9, sort = 'latest', category = [], minPrice, maxPrice } = {}, { rejectWithValue }) => {
     try {
-      // Build query parameters
       const params = new URLSearchParams();
       params.append('page', page);
       params.append('limit', limit);
@@ -44,7 +42,7 @@ export const fetchCategories = createAsyncThunk(
 const initialState = {
   products: [],
   categories: [],
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: 'idle', 
   error: null,
   filters: {
     category: [],
@@ -66,7 +64,6 @@ const productSlice = createSlice({
   reducers: {
     setFilters: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
-      // Reset to page 1 when filters change
       state.pagination.page = 1;
     },
     setPage: (state, action) => {
@@ -75,7 +72,6 @@ const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Handle fetchProducts
       .addCase(fetchProducts.pending, (state) => {
         state.status = 'loading';
       })
@@ -91,7 +87,6 @@ const productSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload || 'Failed to fetch products';
       })
-      // Handle fetchCategories
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.categories = action.payload;
       });

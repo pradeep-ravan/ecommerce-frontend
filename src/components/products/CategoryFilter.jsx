@@ -18,7 +18,7 @@ const CategoryFilter = ({ categories=[], selectedCategories, onChange }) => {
               htmlFor={`category-${category.slug}`}
               className="ml-2 text-gray-700"
             >
-              {category.name} {/* Display count if you have it */}
+              {category.name}
             </label>
           </div>
         ))}

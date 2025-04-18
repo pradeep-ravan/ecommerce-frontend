@@ -40,7 +40,6 @@ const CartPage = () => {
       <h1 className="text-2xl font-bold mb-8">Your Cart ({totalItems} items)</h1>
       
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        {/* Cart Header */}
         <div className="grid grid-cols-5 bg-gray-100 p-4 text-gray-600 font-medium">
           <div className="col-span-2">Product</div>
           <div className="text-center">Price</div>
@@ -48,8 +47,7 @@ const CartPage = () => {
           <div className="text-right">Total</div>
         </div>
         
-        {/* Cart Items */}
-        {items.map((item) => (
+        {items?.map((item) => (
           <div 
             key={item.productId} 
             className="grid grid-cols-5 p-4 border-t border-gray-200 items-center"
@@ -78,7 +76,6 @@ const CartPage = () => {
           </div>
         ))}
         
-        {/* Cart Summary */}
         <div className="p-4 border-t border-gray-200 bg-gray-50">
           <div className="flex justify-between items-center font-bold text-lg">
             <span>Grand Total:</span>

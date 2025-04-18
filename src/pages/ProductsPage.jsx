@@ -19,12 +19,10 @@ const ProductsPage = () => {
   } = useSelector((state) => state.products);
   
   useEffect(() => {
-    // Fetch categories on component mount
     dispatch(fetchCategories());
   }, [dispatch]);
   
   useEffect(() => {
-    // Fetch products when filters or pagination change
     dispatch(fetchProducts({
       page: pagination?.page,
       limit: pagination?.limit,
@@ -46,7 +44,6 @@ const ProductsPage = () => {
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-      {/* Sidebar Filters */}
       <div className="md:col-span-1 space-y-6">
         <h2 className="text-xl font-semibold mb-4">Filters</h2>
         
@@ -79,9 +76,7 @@ const ProductsPage = () => {
         </button>
       </div>
       
-      {/* Product Listing */}
       <div className="md:col-span-3">
-        {/* Sort Controls */}
         <div className="flex justify-between items-center mb-6">
           <p className="text-gray-600">
             Showing {products?.length} of {pagination?.total} products
@@ -93,7 +88,6 @@ const ProductsPage = () => {
           />
         </div>
         
-        {/* Products */}
         {status === 'loading' ? (
           <LoadingSpinner />
         ) : status === 'failed' ? (
@@ -111,7 +105,6 @@ const ProductsPage = () => {
           <>
             <ProductGrid products={products} />
             
-            {/* Pagination */}
             <div className="mt-8">
               <Pagination 
                 currentPage={pagination.page}

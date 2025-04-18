@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_APP_API_URL;
 
-// Generate a simple session ID (in a real app, use a proper session mechanism)
 const getSessionId = () => {
   let sessionId = localStorage.getItem('session_id');
   if (!sessionId) {
@@ -13,7 +12,6 @@ const getSessionId = () => {
   return sessionId;
 };
 
-// Async thunks
 export const fetchCart = createAsyncThunk(
   'cart/fetchCart',
   async (_, { rejectWithValue }) => {
@@ -62,7 +60,7 @@ const initialState = {
   items: [],
   totalItems: 0,
   totalPrice: 0,
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: 'idle', 
   error: null
 };
 
@@ -72,7 +70,6 @@ const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Handle fetchCart
       .addCase(fetchCart.pending, (state) => {
         state.status = 'loading';
       })
@@ -86,9 +83,7 @@ const cartSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload || 'Failed to fetch cart';
       })
-      // Handle addToCart
       .addCase(addToCart.fulfilled, (state, action) => {
-        // We'll just fetch the updated cart
         state.items = action.payload.cart;
         state.totalItems = action.payload.cart.reduce(
           (total, item) => total + item.quantity, 0
@@ -97,7 +92,6 @@ const cartSlice = createSlice({
           (total, item) => total + (item.productDetails.price * item.quantity), 0
         );
       })
-      // Handle removeFromCart
       .addCase(removeFromCart.fulfilled, (state, action) => {
         state.items = action.payload.cart;
         state.totalItems = action.payload.cart.reduce(
