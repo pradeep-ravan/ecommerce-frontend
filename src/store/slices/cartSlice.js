@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'process.env.REACT_VITE_API_URL';
 
 // Generate a simple session ID (in a real app, use a proper session mechanism)
 const getSessionId = () => {
