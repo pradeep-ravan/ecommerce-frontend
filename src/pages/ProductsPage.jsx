@@ -84,7 +84,7 @@ const ProductsPage = () => {
         {/* Sort Controls */}
         <div className="flex justify-between items-center mb-6">
           <p className="text-gray-600">
-            Showing {products.length} of {pagination.total} products
+            Showing {products?.length} of {pagination?.total} products
           </p>
           
           <SortDropdown

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CategoryFilter = ({ categories, selectedCategories, onChange }) => {
+const CategoryFilter = ({ categories=[], selectedCategories, onChange }) => {
   return (
     <div className="border rounded-lg p-4">
       <h3 className="font-medium text-gray-800 mb-2">Product Categories</h3>
       <div className="space-y-2">
-        {categories?.map((category) => (
+        {categories &&categories?.map((category) => (
           <div key={category.slug} className="flex items-center">
             <input
               type="checkbox"
